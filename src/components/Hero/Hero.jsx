@@ -1,19 +1,12 @@
 import { motion } from 'framer-motion';
 import './Hero.css';
 
+// Import background image
 import heroImage from '../../assets/hero1.jpg';
-import logoimg from '../../assets/logo.png';
 
 const Hero = () => {
   return (
     <section className="hero" id="home">
-
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="logo">
-          <img src={logoimg} alt="Golden Lights Photography Logo" />
-        </div>
-      </nav>
 
       {/* Background Image */}
       <motion.div
@@ -45,6 +38,6 @@ const Hero = () => {
 
     </section>
   );
-}
+};
 
 export default Hero;
