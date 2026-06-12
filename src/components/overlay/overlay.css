@@ -1,0 +1,588 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap');
+
+:root{
+  --bg-main:#f8f6f2;
+  --bg-soft:#f3efe9;
+
+  --gold:#c6a77d;
+  --gold-light:#d8c0a0;
+
+  --brown:#1a1a1a;
+  --brown-light:#7d746b;
+
+  --white:#ffffff;
+
+  --font-serif:'Cormorant Garamond', serif;
+  --font-sans:'Manrope', sans-serif;
+}
+
+/* =========================================
+OVERLAY
+========================================= */
+
+.overlay-form{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:30px;
+}
+
+.overlay-bg{
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,.72);
+
+  backdrop-filter:blur(12px);
+}
+
+/* =========================================
+FORM CONTAINER
+========================================= */
+
+.form-container{
+
+  position:relative;
+
+  width:100%;
+  max-width:760px;
+
+  max-height:92vh;
+  overflow-y:auto;
+
+  background:
+  linear-gradient(
+  180deg,
+  #faf8f4 0%,
+  #f8f6f2 50%,
+  #f3efe9 100%
+  );
+
+  border-radius:30px;
+
+  padding:55px;
+
+  z-index:2;
+
+  border:1px solid rgba(198,167,125,.15);
+
+  box-shadow:
+  0 30px 80px rgba(0,0,0,.12);
+
+}
+
+/* =========================================
+SCROLLBAR
+========================================= */
+
+.form-container::-webkit-scrollbar{
+  width:6px;
+}
+
+.form-container::-webkit-scrollbar-thumb{
+
+  background:var(--gold);
+  border-radius:50px;
+
+}
+
+/* =========================================
+CLOSE BUTTON
+========================================= */
+
+.form-close-btn{
+
+  position:absolute;
+
+  top:20px;
+  right:20px;
+
+  width:44px;
+  height:44px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(198,167,125,.2);
+
+  background:var(--white);
+
+  color:var(--brown);
+
+  cursor:pointer;
+
+  transition:.35s ease;
+
+  font-size:1rem;
+}
+
+.form-close-btn:hover{
+
+  background:var(--gold);
+
+  color:white;
+
+  transform:rotate(90deg);
+
+}
+
+/* =========================================
+HEADINGS
+========================================= */
+
+.form-container h2{
+
+  font-family:var(--font-serif);
+
+  font-size:clamp(2.8rem,5vw,4.5rem);
+
+  font-weight:400;
+
+  color:var(--brown);
+
+  text-align:center;
+
+  letter-spacing:.04em;
+
+  line-height:1.1;
+
+  margin-bottom:.5rem;
+}
+
+.form-subtitle{
+
+  text-align:center;
+
+  max-width:550px;
+
+  color:var(--brown-light);
+
+  margin:auto;
+
+  font-size:1rem;
+
+  line-height:1.8;
+}
+
+.form-container p:last-of-type{
+
+  text-align:center;
+
+  color:var(--gold);
+
+  font-size:.85rem;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin-bottom:2.5rem;
+}
+
+/* =========================================
+INPUT GROUP
+========================================= */
+
+.input-group{
+  margin-bottom:22px;
+}
+
+.input-group label{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  font-family:var(--font-sans);
+
+  font-size:.85rem;
+
+  font-weight:500;
+
+  color:var(--brown);
+
+  letter-spacing:.03em;
+}
+
+.input-group span{
+  color:var(--gold);
+}
+
+.input-group small{
+  color:#8f867d;
+}
+
+/* =========================================
+INPUTS
+========================================= */
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+
+  width:100%;
+
+  padding:17px 18px;
+
+  border-radius:14px;
+
+  border:1px solid rgba(198,167,125,.22);
+
+  background:var(--white);
+
+  font-family:var(--font-sans);
+
+  font-size:.95rem;
+
+  color:var(--brown);
+
+  transition:.35s ease;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder{
+
+  color:#9d958d;
+}
+
+/* =========================================
+FOCUS
+========================================= */
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+
+  outline:none;
+
+  border-color:var(--gold);
+
+  box-shadow:
+  0 0 0 4px rgba(198,167,125,.12);
+}
+
+/* =========================================
+TEXTAREA
+========================================= */
+
+textarea{
+
+  resize:vertical;
+
+  min-height:140px;
+}
+
+/* =========================================
+BUTTON
+========================================= */
+
+.submit-btn{
+
+  width:100%;
+
+  margin-top:12px;
+
+  padding:18px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:var(--gold);
+
+  color:white;
+
+  font-family:var(--font-sans);
+
+  font-size:.72rem;
+
+  font-weight:600;
+
+  text-transform:uppercase;
+
+  letter-spacing:4px;
+
+  cursor:pointer;
+
+  transition:.4s ease;
+
+  box-shadow:
+  0 12px 25px rgba(198,167,125,.18);
+}
+
+.submit-btn:hover{
+
+  background:var(--brown);
+
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 20px 40px rgba(0,0,0,.12);
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+  .overlay-form{
+    padding:15px;
+  }
+
+  .form-container{
+
+    padding:38px 24px;
+
+    border-radius:24px;
+  }
+
+  .form-container h2{
+
+    font-size:2.3rem;
+  }
+
+  .form-subtitle{
+
+    font-size:.92rem;
+  }
+
+  .submit-btn{
+
+    padding:16px;
+
+    letter-spacing:3px;
+  }
+}
+
+/* =========================================
+SMALL MOBILE
+========================================= */
+
+@media(max-width:480px){
+
+  .form-container{
+
+    padding:30px 18px;
+  }
+
+  .form-container h2{
+
+    font-size:2rem;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group textarea{
+
+    padding:15px;
+  }
+
+  .submit-btn{
+
+    font-size:.65rem;
+
+    letter-spacing:2px;
+  }
+}
+/* =========================================
+TABLET
+========================================= */
+
+@media (max-width:768px){
+
+  .overlay-form{
+    padding:15px;
+    align-items:flex-start;
+    overflow-y:auto;
+  }
+
+  .form-container{
+
+    margin:20px 0;
+
+    max-height:none;
+
+    padding:38px 24px;
+
+    border-radius:24px;
+  }
+
+  .form-close-btn{
+
+    width:40px;
+    height:40px;
+
+    top:15px;
+    right:15px;
+  }
+
+  .form-container h2{
+
+    font-size:2.3rem;
+
+    line-height:1.1;
+  }
+
+  .form-subtitle{
+
+    font-size:.92rem;
+
+    line-height:1.7;
+  }
+
+  .form-container p:last-of-type{
+
+    font-size:.75rem;
+
+    letter-spacing:1.5px;
+  }
+
+  .input-group{
+
+    margin-bottom:18px;
+  }
+
+  .input-group label{
+
+    font-size:.82rem;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group textarea{
+
+    padding:15px 16px;
+
+    font-size:.92rem;
+  }
+
+  .submit-btn{
+
+    padding:16px;
+
+    letter-spacing:3px;
+
+    font-size:.68rem;
+  }
+
+}
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media (max-width:480px){
+
+  .overlay-form{
+    padding:10px;
+  }
+
+  .form-container{
+
+    padding:28px 18px;
+
+    border-radius:20px;
+  }
+
+  .form-container h2{
+
+    font-size:1.9rem;
+
+    margin-bottom:.4rem;
+  }
+
+  .form-subtitle{
+
+    font-size:.85rem;
+
+    line-height:1.6;
+  }
+
+  .form-container p:last-of-type{
+
+    font-size:.7rem;
+
+    margin-bottom:1.8rem;
+  }
+
+  .form-close-btn{
+
+    width:36px;
+    height:36px;
+
+    font-size:.9rem;
+  }
+
+  .input-group{
+
+    margin-bottom:16px;
+  }
+
+  .input-group label{
+
+    font-size:.78rem;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group textarea{
+
+    padding:14px;
+
+    font-size:.9rem;
+
+    border-radius:12px;
+  }
+
+  textarea{
+
+    min-height:120px;
+  }
+
+  .submit-btn{
+
+    padding:15px;
+
+    font-size:.62rem;
+
+    letter-spacing:2px;
+
+    border-radius:12px;
+  }
+
+}
+
+/* =========================================
+VERY SMALL MOBILE
+========================================= */
+
+@media (max-width:360px){
+
+  .form-container{
+
+    padding:24px 14px;
+  }
+
+  .form-container h2{
+
+    font-size:1.7rem;
+  }
+
+  .input-group input,
+  .input-group select,
+  .input-group textarea{
+
+    padding:12px;
+  }
+
+  .submit-btn{
+
+    font-size:.58rem;
+  }
+
+}

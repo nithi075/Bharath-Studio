@@ -1,101 +1,326 @@
-/* --- Base Styles --- */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 30px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(248, 246, 242, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  box-sizing: border-box;
+/* =========================================
+LUXURY EDITORIAL NAVBAR
+========================================= */
+
+.navbar{
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+
+padding:38px 60px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(248,246,242,.92);
+
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+
+border-bottom:1px solid rgba(198,167,125,.08);
+
+z-index:1000;
+
+box-sizing:border-box;
+
+transition:.35s ease;
 }
 
-.nav-logo {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  letter-spacing: 0.2rem;
-  cursor: pointer;
-  z-index: 1001;
+/* =========================================
+LOGO
+========================================= */
+
+.nav-logo{
+
+font-family:var(--font-serif);
+
+font-size:1.9rem;
+
+letter-spacing:.22rem;
+
+color:#1a1a1a;
+
+text-decoration:none;
+
+cursor:pointer;
+
+z-index:1001;
+
+transition:.3s ease;
 }
 
-.nav-links {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.nav-logo:hover{
+
+color:#c6a77d;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #1a1a1a;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  transition: color 0.3s ease;
+/* =========================================
+DESKTOP NAV LINKS
+========================================= */
+
+.nav-links{
+
+display:flex;
+
+gap:50px;
+
+list-style:none;
+
+margin:0;
+padding:0;
 }
 
-.nav-links a:hover {
-  color: #c6a77d;
+.nav-links li{
+list-style:none;
 }
 
-/* --- Hamburger Icon --- */
-.menu-icon {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  z-index: 1001;
+.nav-links a{
+
+text-decoration:none;
+
+color:#1a1a1a;
+
+font-family:var(--font-sans);
+
+font-size:.78rem;
+
+text-transform:uppercase;
+
+letter-spacing:.25em;
+
+transition:.3s ease;
+
+position:relative;
 }
 
-.menu-icon span {
-  width: 25px;
-  height: 1px;
-  background: #1a1a1a;
-  transition: 0.3s;
+.nav-links a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+bottom:-8px;
+
+width:0;
+height:1px;
+
+background:#c6a77d;
+
+transition:.35s ease;
 }
 
-/* --- Mobile Responsive --- */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 20px 15px;
-  }
+.nav-links a:hover{
 
-  .nav-logo {
-    font-size: 1.2rem;
-  }
+color:#c6a77d;
+}
 
-  .menu-icon {
-    display: flex;
-  }
+.nav-links a:hover::after{
 
-  /* Hidden state */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: #f8f6f2;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    transition: right 0.5s ease-in-out;
-    z-index: 999;
-  }
+width:100%;
+}
 
-  /* Active state */
-  .nav-links.active {
-    right: 0;
-  }
+/* =========================================
+HAMBURGER
+========================================= */
 
-  .nav-links a {
-    font-size: 1.5rem;
-    font-weight: 300;
-  }
+.menu-icon{
+
+display:none;
+
+flex-direction:column;
+
+gap:7px;
+
+cursor:pointer;
+
+z-index:1001;
+}
+
+.menu-icon span{
+
+width:28px;
+height:1.5px;
+
+background:#1a1a1a;
+
+transition:.35s ease;
+}
+
+/* =========================================
+MENU ANIMATION
+========================================= */
+
+.menu-icon.open span:first-child{
+
+transform:
+translateY(4px)
+rotate(45deg);
+}
+
+.menu-icon.open span:last-child{
+
+transform:
+translateY(-4px)
+rotate(-45deg);
+}
+
+/* =========================================
+TABLET
+========================================= */
+
+@media (max-width:1024px){
+
+.navbar{
+
+
+padding:30px 35px;
+
+
+}
+
+.nav-links{
+
+
+gap:35px;
+
+
+}
+
+}
+
+/* =========================================
+MOBILE MENU
+========================================= */
+
+@media (max-width:768px){
+
+.navbar{
+
+
+padding:24px 20px;
+
+
+}
+
+.nav-logo{
+
+
+font-size:1.4rem;
+
+letter-spacing:.15rem;
+
+
+}
+
+.menu-icon{
+display:flex;
+}
+
+.nav-links{
+
+
+position:fixed;
+
+top:0;
+right:-100%;
+
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(
+  180deg,
+  #faf8f4 0%,
+  #f8f6f2 50%,
+  #f3efe9 100%
+);
+
+flex-direction:column;
+
+justify-content:center;
+align-items:center;
+
+gap:45px;
+
+z-index:999;
+
+
+}
+
+.nav-links.active{
+
+
+right:0;
+
+
+}
+
+.nav-links a{
+
+
+font-family:var(--font-serif);
+
+font-size:2rem;
+
+text-transform:none;
+
+letter-spacing:.05em;
+
+font-weight:400;
+
+
+}
+
+.nav-links a::after{
+
+
+bottom:-10px;
+
+
+}
+
+}
+
+/* =========================================
+SMALL MOBILE
+========================================= */
+
+@media (max-width:480px){
+
+.navbar{
+
+
+padding:20px 16px;
+
+
+}
+
+.nav-logo{
+
+
+font-size:1.15rem;
+
+
+}
+
+.nav-links{
+
+
+gap:38px;
+
+
+}
+
+.nav-links a{
+
+
+font-size:1.75rem;
+
+
+}
+
 }

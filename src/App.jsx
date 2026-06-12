@@ -9,7 +9,6 @@ import {
 // Home Components
 import Hero from "./components/Hero/Hero";
 import StorySection from "./components/StorySection/StorySection";
-import FilmSection from "./components/FilmSection/FlimSection";
 import About from "./components/About/About";
 import Testimonials from "./components/testimonials/Testimonials";
 import Gallery from "./components/Gallery/Gallery";
@@ -19,7 +18,8 @@ import Storytelling from "./components/StoryTelling/StoryTelling";
 import WeddingStory from "./components/WeddingStory/WeddingStory";
 import TenPartNarrative from "./components/TenPartNarrative/TenPartNarrative";
 import FAQ from "./components/FreequentQ/faq";
-
+import FloatingChat from "./components/floating/floating";
+import OverlayForm from "./components/overlay/overlay";
 // Gallery Detail Page
 import GalleryDetail from "./pages/Gallery";
 
@@ -47,12 +47,12 @@ function HomePage() {
       <WeddingStory />
 
       <Testimonials />
-            <FilmSection />
-
+       
 
       <FAQ />
 
       <Gallery />
+      <FloatingChat />
 
       <Footer />
     </div>
@@ -73,6 +73,11 @@ function App() {
           path="/"
           element={<HomePage />}
         />
+ {/* Overlay Form */}
+  <Route
+    path="/book-event"
+    element={<OverlayForm />}
+  />
 
         {/* Dynamic Gallery */}
         <Route
