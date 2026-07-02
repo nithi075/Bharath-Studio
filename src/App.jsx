@@ -34,7 +34,7 @@ function Home() {
       </section>
       <Instagram />
       <FAQ />
-      <Floating/>
+      {/* <Floating/> */}
     </main>
   )
 }

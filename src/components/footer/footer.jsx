@@ -50,8 +50,8 @@ return ( <footer className="footer"> <div className="footer__top">
   aria-label="Srimathi Photography — Home"
 >
   <span className="footer__logo-text">
-    SRIMATHI
-    <small>PHOTOGRAPHY</small>
+    Zoomin
+    <small>Momentz</small>
   </span>
 </Link>
 
@@ -123,7 +123,7 @@ return ( <footer className="footer"> <div className="footer__top">
 
         {/* Facebook */}
         <a
-          href="https://www.facebook.com/Zerowattsphotography/"
+          href="https://www.facebook.com//"srimathiphotography
           className="footer__social-link"
           target="_blank"
           rel="noopener noreferrer"
@@ -189,26 +189,26 @@ return ( <footer className="footer"> <div className="footer__top">
         </a>
       </div>
 
-      <a href="tel:+918939700777" className="footer__phone">
-        +91 89397 00777
+      {/* <a href="tel:+918939700777" className="footer__phone">
+        +60 16-5033804
       </a>
 
       <a
-        href="https://wa.me/918939700777"
+        href="https://wa.me/60165033804"
         className="footer__whatsapp"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp us"
       >
         WhatsApp
-      </a>
+      </a> */}
     </div>
 
   </div>
 
   <div className="footer__bottom">
     <p className="footer__copyright">
-      © 2026 ZEROWATTS PHOTOGRAPHY
+      © 2026 Zoomin Momentz
     </p>
   </div>
 </footer>
