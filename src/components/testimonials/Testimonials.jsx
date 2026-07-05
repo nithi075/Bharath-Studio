@@ -7,48 +7,48 @@ import './Testimonials.css'
 const testimonials = [
   {
     id: 1,
-    body: 'Thank you zerowatts to capture best moments of our wedding & reception. We loved the pre-wedding shoots and the tradition pictures. It was amazing working with you. Team of photographers are very flexible to work with. Great effort on end to end follow up to make sure we received albums.',
-    couple: 'Theebica + Purushoth',
+    body: 'Visuals by KS beautifully captured every emotion of our wedding journey. From candid moments to traditional frames, every picture felt natural and timeless. The team made us comfortable throughout and gave us memories we will cherish forever.',
+    couple: 'Harini + Karthik',
   },
   {
     id: 2,
-    body: 'We had the pleasure of working with Zerowatts Photography for our engagement, reception, and wedding events in May 2024, and we couldn\'t be happier with the results! From start to finish, their team demonstrated incredible professionalism and creativity.',
-    couple: 'Jeevitha + Pawan',
+    body: 'Choosing Visuals by KS for our engagement and wedding was the best decision. Their creativity, patience, and attention to detail were amazing. Every photo tells a story and the final output exceeded our expectations.',
+    couple: 'Meera + Arjun',
   },
   {
     id: 3,
-    body: 'We have booked Zerowatts for engagement, pre-wedding shoot, reception and wedding. They did a wonderful job and made us feel really comfortable. Overall experience with them all as topnotch! Would really love to work with them again.',
-    couple: 'Pratibha + Ashwanth',
+    body: 'The entire experience with Visuals by KS was wonderful. The team captured our pre-wedding shoot and wedding moments so beautifully. They understood our style and created pictures that truly reflected us.',
+    couple: 'Divya + Rohit',
   },
   {
     id: 4,
-    body: 'Had pleased experience with zero Watts photography right from the pre-wedding photoshoot till the wedding events! Great teamwork and the crew members were super friendly and talented! The album and photos quality came out beautifully! Thank you team.',
-    couple: 'Pooja + Raveen',
+    body: 'From the first discussion to final delivery, Visuals by KS handled everything professionally. The photographers were friendly, creative, and captured every little detail perfectly. We absolutely loved our wedding album.',
+    couple: 'Priya + Sanjay',
   },
   {
     id: 5,
-    body: 'I want to personally thank Zero Watts for their incredible effort in capturing every beautiful moment of the event. The deliverables were exactly as promised and turned out amazing. It was a pleasure working with them. I would definitely recommend their services to everyone!',
-    couple: 'Divyashree + Narayanan',
+    body: 'A huge thanks to Visuals by KS for turning our special day into beautiful memories. The candid shots, videos, and edits were elegant and emotional. Their dedication and quality of work are truly impressive.',
+    couple: 'Nandhini + Vishal',
   },
   {
     id: 6,
-    body: 'We loved the team, their efforts to get good pictures even when the bride and groom were cranky is highly appreciable. One can see the efforts the team goes through to deliver good quality services. They kept us comfortable throughout the event, Thank you Team ZW.',
-    couple: 'Subathra + Animesh',
+    body: 'Visuals by KS made us feel completely relaxed in front of the camera. Their team captured genuine smiles, emotions, and unforgettable moments. The final photos were beyond what we imagined.',
+    couple: 'Swetha + Naveen',
   },
   {
     id: 7,
-    body: 'The candid and traditional photography teams were exceptional, perfectly balancing spontaneous moments with the more classic shots. The videography was just stunning, and every important detail was covered flawlessly. You\'ve helped us relive our big day in the best way possible!',
-    couple: 'Nivya + Manoj',
+    body: 'Every frame delivered by Visuals by KS had a beautiful story behind it. Their balance of candid photography and traditional moments was perfect. We are so happy that they captured our big day.',
+    couple: 'Ananya + Pranav',
   },
   {
     id: 8,
-    body: 'Wonderful experience with Zerowatts! From pre-shoot till wedding we had smooth experience. The pictures were well captured and they make amazing viral reels! Highly recommend Zero Watts Photography to anyone seeking a talented and professional photography team!',
-    couple: 'Aishwarya + Rahul',
+    body: 'Amazing experience working with Visuals by KS! The pre-wedding concepts, wedding coverage, and highlight videos were beautifully executed. A passionate team that truly loves creating memories.',
+    couple: 'Keerthana + Rahul',
   },
   {
     id: 9,
-    body: 'Great photographers — done outstanding job. We are fully satisfied with photos and videos. Especially wedding teaser was awesome. Professional staff and showed patience throughout event. Praveen followed up regularly until all deliverables are met. Really recommend.',
-    couple: 'Amrin + Saleem Pasha',
+    body: 'The Visuals by KS team did a fantastic job capturing our celebrations. Their patience, creativity, and commitment were visible in every photo and film. Highly recommended for couples looking for elegant memories.',
+    couple: 'Aadhya + Siddharth',
   },
 ]
 

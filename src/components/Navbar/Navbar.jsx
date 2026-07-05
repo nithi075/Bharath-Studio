@@ -130,8 +130,8 @@ export default function Navbar() {
         {/* LOGO */}
        <Link to="/" className="navbar__logo" aria-label="Srimathi Photography">
   <span className="navbar__logo-text">
-    Zoomin
-    <small>Momentz</small>
+    Visuals 
+    <small>By KS</small>
   </span>
 </Link>
 

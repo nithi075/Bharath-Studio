@@ -26,12 +26,12 @@ const Instagram = () => {
       </h2>
 
       <a
-        href="https://www.instagram.com/zoomin_momentz/"
+        href="https://www.instagram.com/visualsby_ks/"
         target="_blank"
         rel="noopener noreferrer"
         className="insta-feed__handle"
       >
-        @zoomin_momentz
+        @visualsby_ks
       </a>
 
       <div className="insta-feed__grid">

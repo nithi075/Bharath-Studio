@@ -50,8 +50,8 @@ return ( <footer className="footer"> <div className="footer__top">
   aria-label="Srimathi Photography — Home"
 >
   <span className="footer__logo-text">
-    Zoomin
-    <small>Momentz</small>
+    VISUAL
+    <small>BY KS</small>
   </span>
 </Link>
 
