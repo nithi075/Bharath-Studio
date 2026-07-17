@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Footer.css'
+import './footer.css'
 
 const FOOTER_LINKS = {
   Studio: [
