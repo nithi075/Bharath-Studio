@@ -124,8 +124,6 @@ function Portfolio() {
               </span>
               <div className="portfolio__overlay">
                 <span className="portfolio__zoom" aria-hidden="true">+</span>
-                <p className="portfolio__couple">{wedding.couple}</p>
-                <p className="portfolio__venue">{wedding.venue}</p>
               </div>
             </div>
           ))}
