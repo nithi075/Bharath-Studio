@@ -22,10 +22,10 @@ function Instagram() {
       <div className="container">
 
         <div className="instagram__header">
-          <p className="eyebrow">ART LIVES IN THE</p>
+          <p className="eyebrow">Art Lives in the Everyday</p>
 
           <h2 className="section-heading">
-            INSTAGRAM
+            On <em>Instagram</em>
           </h2>
         </div>
 
@@ -42,12 +42,12 @@ function Instagram() {
               >
                 <img
                   src={image}
-                  alt={`Instagram ${index + 1}`}
+                  alt={`From the studio's Instagram, frame ${index + 1}`}
                   className="instagram__image"
                 />
 
                 <div className="instagram__overlay">
-                  📷
+                  View on Instagram
                 </div>
               </a>
             ))}
@@ -55,19 +55,22 @@ function Instagram() {
 
           <div className="instagram__card">
 
-            <h3>FOLLOW OUR JOURNEY</h3>
+            <p className="eyebrow">@dp_photography_tn76</p>
+
+            <h3>Follow the Journey</h3>
 
             <p>
-              Get inspired and follow us on Instagram
+              Behind-the-scenes moments, latest shoots, and quiet
+              in-betweens — straight from the field.
             </p>
 
             <a
-              href="https://www.instagram.com/bharath_studio_/"
+              href="https://www.instagram.com/dp_photography_tn76/"
               target="_blank"
               rel="noopener noreferrer"
               className="instagram__button"
             >
-              📷 FOLLOW OUR JOURNEY
+              Follow Along
             </a>
 
           </div>

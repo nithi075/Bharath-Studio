@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './footer.css'
+import './Footer.css'
 
 const FOOTER_LINKS = {
   Studio: [
@@ -49,14 +49,37 @@ function Footer() {
         <div className="footer__brand">
           <a href="#home" className="footer__logo">
             <span>Bharath</span>
+            <span className="footer__logo-amp">&amp;</span>
             <span>Studio</span>
           </a>
 
           <p className="footer__tagline">
-            Professional Photography, Videography & Creative Visual Storytelling.
+            Professional photography, videography, and creative visual
+            storytelling — told one frame at a time.
           </p>
 
-         
+          <form className="footer__newsletter" onSubmit={handleSubscribe}>
+            <span className="footer__newsletter-label">
+              Join the mailing list
+            </span>
+
+            {subscribed ? (
+              <p className="footer__subscribed">
+                Thank you — you're on the list.
+              </p>
+            ) : (
+              <div className="footer__newsletter-row">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <button type="submit">Subscribe</button>
+              </div>
+            )}
+          </form>
         </div>
 
         {/* Links */}
@@ -103,7 +126,7 @@ function Footer() {
       </div>
 
       <span className="footer__monogram" aria-hidden="true">
-        📷
+        BS
       </span>
 
       <div className="footer__bottom">

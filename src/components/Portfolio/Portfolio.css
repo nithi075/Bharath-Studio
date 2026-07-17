@@ -94,6 +94,30 @@
   transform: scale(1.08);
 }
 
+/* Magazine-style figure tag, like a printed photo credit */
+.portfolio__figure {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: rgba(28, 22, 15, 0.45);
+  padding: 0.3rem 0.6rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--dur-medium) var(--ease-elegant),
+              transform var(--dur-medium) var(--ease-elegant);
+}
+
+.portfolio__item:hover .portfolio__figure {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .portfolio__overlay {
   position: absolute;
   inset: 0;

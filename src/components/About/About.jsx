@@ -40,7 +40,7 @@ function About() {
             Timeless Memories.
           </h2>
 
-          <p className="about__paragraph">
+          <p className="about__paragraph about__paragraph--lead">
             Bharath Studio is a passionate photography company based in
             Tirunelveli, dedicated to capturing emotions, celebrations, and
             unforgettable memories through creative storytelling.

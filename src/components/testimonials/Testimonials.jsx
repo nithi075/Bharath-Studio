@@ -47,12 +47,14 @@ function Testimonials() {
           <button className="testimonials__arrow testimonials__arrow--left" onClick={goPrev} aria-label="Previous testimonial">&#8592;</button>
 
           <div className="testimonials__slide-window">
+            <span className="testimonials__mark" aria-hidden="true">&#8220;</span>
+
             {REVIEWS.map((review, index) => (
               <blockquote
                 key={review.name}
                 className={`testimonials__slide ${active === index ? 'is-active' : ''}`}
               >
-                <p className="testimonials__quote">&ldquo;{review.quote}&rdquo;</p>
+                <p className="testimonials__quote">{review.quote}</p>
                 <footer className="testimonials__attribution">
                   <span className="testimonials__name">{review.name}</span>
                   <span className="testimonials__venue">{review.venue}</span>
