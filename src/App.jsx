@@ -18,14 +18,37 @@ import GalleryCategory from "./components/GalleryPage/GalleryPage";
 function Home() {
   return (
     <>
-      <Hero />
-      <About />
-      <Gallery />
-      <Services />
-      <Portfolio />
-      <Testimonials />
-      <Contact />
-      <Instagram />
+      <section id="home">
+        <Hero />
+      </section>
+
+      <section id="about">
+        <About />
+      </section>
+
+      <section id="gallery">
+        <Gallery />
+      </section>
+
+      <section id="services">
+        <Services />
+      </section>
+
+      <section id="portfolio">
+        <Portfolio />
+      </section>
+
+      <section id="testimonials">
+        <Testimonials />
+      </section>
+
+      <section id="contact">
+        <Contact />
+      </section>
+
+      <section id="instagram">
+        <Instagram />
+      </section>
     </>
   );
 }
@@ -39,7 +62,10 @@ function App() {
         {/* Home */}
         <Route path="/" element={<Home />} />
 
-        {/* Gallery Category */}
+        {/* Full Gallery */}
+        <Route path="/gallery" element={<GalleryCategory />} />
+
+        {/* Category Gallery */}
         <Route
           path="/gallery/:category"
           element={<GalleryCategory />}

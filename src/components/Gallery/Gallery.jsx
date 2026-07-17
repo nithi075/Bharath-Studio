@@ -84,7 +84,7 @@ function Gallery() {
       <div className="gallery__btn">
         <button
           className="view-more-btn"
-          onClick={() => navigate("/gallery/wedding")}
+          onClick={() => navigate("/gallery")}
         >
           View More
         </button>

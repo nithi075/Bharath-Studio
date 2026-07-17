@@ -6,7 +6,6 @@ import "./GalleryPage.css";
 function GalleryCategory() {
   const { category } = useParams();
 
-  // Category Details
   const categoryInfo = {
     wedding: {
       title: "Wedding Photography",
@@ -30,33 +29,39 @@ function GalleryCategory() {
     },
   };
 
-  // Category Filters
-  const categoryFilters = {
-    wedding: ["All", "Candid", "Traditional", "Outdoor", "Indoor"],
-    model: ["All", "Fashion", "Studio", "Outdoor"],
-    portrait: ["All", "Indoor", "Outdoor", "Studio"],
-    maternity: ["All", "Indoor", "Outdoor", "Studio"],
-    bride: ["All", "Bridal"],
-  };
+  // Category Filter Buttons
+  const categoryButtons = [
+    "All",
+    "Wedding",
+    "Model",
+    "Portrait",
+    "Maternity",
+    "Bride",
+  ];
 
-  const info = categoryInfo[category?.toLowerCase()] || {
-    title: "Gallery",
-    quote: "Capturing moments that last forever.",
-  };
+  const info = category
+    ? categoryInfo[category.toLowerCase()]
+    : {
+        title: "Our Gallery",
+        quote:
+          "Explore our collection of beautiful moments captured through the lens.",
+      };
 
-  const filters = categoryFilters[category?.toLowerCase()] || ["All"];
-
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState(
+    category ? category.charAt(0).toUpperCase() + category.slice(1) : "All"
+  );
 
   // Filter Images
   const images = GALLERY.filter((item) => {
-    const categoryMatch =
-      item.category.toLowerCase() === category?.toLowerCase();
+    if (category) {
+      return item.category.toLowerCase() === category.toLowerCase();
+    }
 
-    const filterMatch =
-      filter === "All" || item.type === filter;
+    if (filter === "All") {
+      return true;
+    }
 
-    return categoryMatch && filterMatch;
+    return item.category.toLowerCase() === filter.toLowerCase();
   });
 
   return (
@@ -64,31 +69,31 @@ function GalleryCategory() {
       <div className="container">
         <h2 className="category-title">{info.title}</h2>
 
-        <p className="category-quote">
-          "{info.quote}"
-        </p>
+        <p className="category-quote">{info.quote}</p>
 
-        {/* Filter Buttons */}
-        <div className="gallery-filters">
-          {filters.map((btn) => (
-            <button
-              key={btn}
-              className={filter === btn ? "active" : ""}
-              onClick={() => setFilter(btn)}
-            >
-              {btn}
-            </button>
-          ))}
-        </div>
+        {/* Filter only in Full Gallery */}
+        {!category && (
+          <div className="gallery-filters">
+            {categoryButtons.map((btn) => (
+              <button
+                key={btn}
+                className={filter === btn ? "active" : ""}
+                onClick={() => setFilter(btn)}
+              >
+                {btn}
+              </button>
+            ))}
+          </div>
+        )}
 
-        {/* Gallery Grid */}
         <div className="grid">
           {images.length > 0 ? (
             images.map((item, index) => (
               <div className="grid-item" key={index}>
                 <img
                   src={item.image}
-                  alt={`${item.category} ${item.type}`}
+                  alt={item.category}
+                  loading="lazy"
                 />
               </div>
             ))

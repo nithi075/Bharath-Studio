@@ -207,3 +207,10 @@ body:not(.scrolled) .navbar:not(.navbar--scrolled) .navbar__logo {
     display: block;
   }
 }
+.navbar__link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
