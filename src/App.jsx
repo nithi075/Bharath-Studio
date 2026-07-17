@@ -8,10 +8,10 @@ import About from "./components/About/About";
 import Gallery from "./components/Gallery/Gallery";
 import Services from "./components/Services/Services";
 import Portfolio from "./components/Portfolio/Portfolio";
-import Testimonials from "./components/Testimonials/Testimonials";
+import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/Contact/Contact";
-import Instagram from "./components/Instagram/Instagram";
-import Footer from "./components/Footer/Footer";
+import Instagram from "./components/instagram/Instagram";
+import Footer from "./components/footer/footer";
 
 import GalleryCategory from "./components/GalleryPage/GalleryPage";
 
