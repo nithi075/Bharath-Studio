@@ -1,62 +1,54 @@
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
-import About from './components/About/About'
-import Gallery from './components/Gallery/Gallery'
-import Testimonials from './components/Testimonials/Testimonials'
-import Contact from './components/Contact/Contact'
-import Instagram from './components/instagram/instagram'
-import FAQ from './components/FreequentQ/faq'
-import Footer from './components/Footer/Footer'
-import Portfolio from './components/Portfolio/Portfolio'
-import ScrollToTop from './components/ScrollToTop'
+import "./App.css";
 
-import './App.css'
-import Floating from './components/Floating/Floating'
+import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Hero/Hero";
+import About from "./components/About/About";
+import Gallery from "./components/Gallery/Gallery";
+import Services from "./components/Services/Services";
+import Portfolio from "./components/Portfolio/Portfolio";
+import Testimonials from "./components/Testimonials/Testimonials";
+import Contact from "./components/Contact/Contact";
+import Instagram from "./components/Instagram/Instagram";
+import Footer from "./components/Footer/Footer";
+
+import GalleryCategory from "./components/GalleryPage/GalleryPage";
 
 function Home() {
   return (
-    <main>
+    <>
       <Hero />
       <About />
-      
-      <section id="gallery">
-
-        <Gallery />
-
-      </section>
+      <Gallery />
+      <Services />
+      <Portfolio />
       <Testimonials />
-      <section id="contact">
-
-        <Contact />
-
-      </section>
+      <Contact />
       <Instagram />
-      <FAQ />
-      {/* <Floating/> */}
-    </main>
-  )
+    </>
+  );
 }
 
 function App() {
   return (
-    <div className="app">
-      <ScrollToTop />
-
+    <BrowserRouter>
       <Navbar />
 
       <Routes>
+        {/* Home */}
         <Route path="/" element={<Home />} />
 
-        <Route path="/portfolio" element={<Portfolio />} />
-
-
+        {/* Gallery Category */}
+        <Route
+          path="/gallery/:category"
+          element={<GalleryCategory />}
+        />
       </Routes>
 
       <Footer />
-    </div>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

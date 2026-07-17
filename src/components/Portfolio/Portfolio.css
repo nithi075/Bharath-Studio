@@ -1,422 +1,294 @@
-/* =============================================
-PORTFOLIO
-Zero Watts Style
-============================================= */
-
 .portfolio {
-padding: var(--sp-24) 0 var(--sp-20);
-background: var(--color-white);
-border-top: 1px solid var(--color-border);
+  padding: var(--sp-8) 0;
+  background-color: var(--color-cream-deep);
 }
-
-/* =============================================
-HEADER
-============================================= */
 
 .portfolio__header {
-text-align: center;
-padding: 0 var(--sp-8) var(--sp-10);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
 }
 
-.portfolio__heading {
-font-family: var(--font-display);
-font-size: var(--fs-3xl);
-font-weight: 400;
-color: var(--color-dark);
-letter-spacing: 0.04em;
-margin-bottom: var(--sp-4);
+.portfolio__header em {
+  font-style: italic;
+  color: var(--color-wine);
 }
 
-.portfolio__sub {
-font-family: var(--font-ui);
-font-size: var(--fs-base);
-font-weight: 300;
-color: var(--color-mid-gray);
-letter-spacing: 0.05em;
-max-width: 500px;
-margin: 0 auto;
-line-height: 1.8;
-}
-
-/* =============================================
-FILTERS
-============================================= */
-
+/* ---- Filter tabs ---- */
 .portfolio__filters {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: var(--sp-2);
-padding: 0 var(--sp-8) var(--sp-10);
-max-width: 1100px;
-margin: 0 auto;
+  display: flex;
+  gap: var(--sp-3);
 }
 
-.portfolio__filter-btn {
-font-family: var(--font-ui);
-font-size: var(--fs-xs);
-font-weight: 600;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-
-padding: 0.7rem 1.4rem;
-
-border: 1px solid var(--color-border);
-background: var(--color-white);
-
-color: var(--color-mid-gray);
-
-transition:
-background var(--transition-base),
-color var(--transition-base),
-border-color var(--transition-base);
-
-white-space: nowrap;
+.portfolio__filter {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  padding-bottom: 0.4rem;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-elegant);
 }
 
-.portfolio__filter-btn:hover {
-border-color: var(--color-gold);
-color: var(--color-gold);
+.portfolio__filter::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background-color: var(--color-gold);
+  transition: width var(--dur-fast) var(--ease-elegant);
 }
 
-.portfolio__filter-btn--active {
-background: var(--color-dark);
-border-color: var(--color-dark);
-color: var(--color-white);
+.portfolio__filter:hover {
+  color: var(--color-ink);
 }
 
-/* =============================================
-GRID - MASONRY
-============================================= */
+.portfolio__filter.is-active {
+  color: var(--color-wine);
+}
 
+.portfolio__filter.is-active::after {
+  width: 100%;
+  background-color: var(--color-wine);
+}
+
+/* ---- Masonry-style grid ---- */
 .portfolio__grid {
-columns: 4;
-column-gap: var(--sp-3);
-
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 var(--sp-5);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 140px;
+  gap: var(--sp-3);
 }
 
-/* =============================================
-ITEM
-============================================= */
+.portfolio__item--short { grid-row: span 2; }
+.portfolio__item--tall { grid-row: span 3; }
+.portfolio__item--wide { grid-row: span 2; grid-column: span 2; }
 
 .portfolio__item {
-display: block;
-width: 100%;
-break-inside: avoid;
-
-position: relative;
-overflow: hidden;
-background: var(--color-cream);
-border: none;
-padding: 0;
-cursor: pointer;
-outline: none;
-
-margin-bottom: var(--sp-3);
-
-animation: pfadeIn 0.45s ease both;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-@keyframes pfadeIn {
-from {
-opacity: 0;
-transform: translateY(12px);
+.portfolio__image-placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(107, 39, 55, 0.25), rgba(176, 138, 78, 0.25)),
+    repeating-linear-gradient(
+      110deg,
+      #ddc9a3 0px,
+      #ddc9a3 2px,
+      #d3bd92 2px,
+      #d3bd92 30px
+    );
+  transition: transform var(--dur-slow) var(--ease-elegant);
 }
 
-to {
-opacity: 1;
-transform: translateY(0);
+.portfolio__item:hover .portfolio__image-placeholder {
+  transform: scale(1.08);
 }
-}
-
-.portfolio__item:focus-visible {
-box-shadow: 0 0 0 3px var(--color-gold);
-}
-
-/* =============================================
-IMAGE
-============================================= */
-
-.portfolio__img {
-display: block;
-width: 100%;
-height: auto;
-vertical-align: bottom;
-
-transition:
-transform var(--transition-slow),
-filter var(--transition-base);
-}
-
-/* =============================================
-OVERLAY
-============================================= */
 
 .portfolio__overlay {
-position: absolute;
-inset: 0;
-
-background: linear-gradient(
-to bottom,
-rgba(0,0,0,0.12) 0%,
-rgba(0,0,0,0.35) 100%
-);
-
-opacity: 0;
-
-transition: opacity var(--transition-base);
-
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.portfolio__overlay-icon {
-font-size: 2.2rem;
-font-weight: 300;
-color: var(--color-white);
-
-transform: scale(0.7);
-
-transition: transform var(--transition-base);
-}
-
-.portfolio__item:hover .portfolio__img {
-transform: scale(1.05);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  text-align: center;
+  background: rgba(28, 22, 15, 0);
+  color: var(--color-white);
+  opacity: 0;
+  transition: opacity var(--dur-medium) var(--ease-elegant),
+              background-color var(--dur-medium) var(--ease-elegant);
 }
 
 .portfolio__item:hover .portfolio__overlay {
-opacity: 1;
+  opacity: 1;
+  background: rgba(28, 22, 15, 0.55);
 }
 
-.portfolio__item:hover .portfolio__overlay-icon {
-transform: scale(1);
+.portfolio__zoom {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  border: 1px solid var(--color-white);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  transform: scale(0.8);
+  transition: transform var(--dur-medium) var(--ease-elegant);
 }
 
-/* =============================================
-LIGHTBOX
-============================================= */
-
-.portfolio__lightbox {
-position: fixed;
-inset: 0;
-
-background: rgba(26, 26, 26, 0.94);
-
-z-index: var(--z-modal);
-
-display: flex;
-align-items: center;
-justify-content: center;
-
-animation: lbFade 0.25s ease;
+.portfolio__item:hover .portfolio__zoom {
+  transform: scale(1);
 }
 
-@keyframes lbFade {
-from {
-opacity: 0;
+.portfolio__couple {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
 }
 
-to {
-opacity: 1;
-}
-}
-
-.portfolio__lb-img {
-max-width: 90vw;
-max-height: 88vh;
-object-fit: contain;
-
-animation: lbScale 0.3s ease;
+.portfolio__venue {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
 }
 
-@keyframes lbScale {
-from {
-opacity: 0;
-transform: scale(0.95);
+/* ---- Breakpoints ---- */
+@media (max-width: 960px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .portfolio__item--wide {
+    grid-column: span 2;
+  }
+}
+.portfolio__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
-to {
-opacity: 1;
-transform: scale(1);
-}
+.portfolio__item:hover .portfolio__image {
+  transform: scale(1.08);
 }
 
-.portfolio__lb-close {
-position: absolute;
-
-top: var(--sp-5);
-right: var(--sp-6);
-
-font-size: 1.5rem;
-
-color: rgba(255,255,255,0.7);
-
-background: none;
-border: none;
-
-cursor: pointer;
-
-padding: var(--sp-2);
-
-transition: color var(--transition-fast);
+@media (max-width: 600px) {
+  .portfolio {
+    padding: var(--sp-6) 0;
+  }
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+  .portfolio__item--short,
+  .portfolio__item--tall,
+  .portfolio__item--wide {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+  .portfolio__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .portfolio__filters {
+    flex-wrap: wrap;
+  }
 }
+/* ===============================
+      Mobile Premium Bento
+================================ */
 
-.portfolio__lb-close:hover {
-color: var(--color-white);
-}
+@media (max-width: 600px) {
 
-.portfolio__lb-nav {
-position: absolute;
+  .portfolio {
+    padding: 60px 18px;
+  }
 
-top: 50%;
-transform: translateY(-50%);
+  .portfolio__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
 
-font-size: 3rem;
+  .portfolio__filters {
+    display: none;
+  }
 
-color: rgba(255,255,255,0.55);
+  .portfolio__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 120px;
+    grid-auto-flow: dense;
+    gap: 10px;
+  }
 
-background: none;
-border: none;
+  /* Featured Image */
 
-cursor: pointer;
+  .portfolio__item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
 
-padding: var(--sp-4);
+  /* Bento Sizes */
 
-transition: color var(--transition-fast);
-}
+  .portfolio__item--tall {
+    grid-row: span 2;
+  }
 
-.portfolio__lb-nav:hover {
-color: var(--color-white);
-}
+  .portfolio__item--wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
 
-.portfolio__lb-nav--prev {
-left: var(--sp-4);
-}
+  .portfolio__item--short {
+    grid-row: span 1;
+  }
 
-.portfolio__lb-nav--next {
-right: var(--sp-4);
-}
+  .portfolio__item {
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+  }
 
-/* =============================================
-TABLET
-============================================= */
+  .portfolio__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+  }
 
-@media (max-width: 1200px) {
-.portfolio__grid {
-columns: 3;
-}
-}
+  .portfolio__item:hover .portfolio__image {
+    transform: scale(1.05);
+  }
 
-@media (max-width: 768px) {
-.portfolio {
-padding: var(--sp-16) 0;
-}
+  /* Overlay */
 
-.portfolio__heading {
-font-size: var(--fs-2xl);
-}
+  .portfolio__overlay {
+    opacity: 1;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 12px;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,.55),
+      rgba(0,0,0,.05)
+    );
+  }
 
-.portfolio__sub {
-font-size: var(--fs-sm);
-}
+  .portfolio__zoom {
+    display: none;
+  }
 
-.portfolio__filters {
-padding: 0 var(--sp-4) var(--sp-8);
-gap: var(--sp-2);
-}
+  .portfolio__couple {
+    font-size: .9rem;
+    line-height: 1.2;
+    margin-bottom: 3px;
+    color: #fff;
+  }
 
-.portfolio__filter-btn {
-font-size: 10px;
-padding: 0.55rem 1rem;
-letter-spacing: 0.12em;
-}
+  .portfolio__venue {
+    font-size: .65rem;
+    color: rgba(255,255,255,.9);
+    letter-spacing: .08em;
+  }
 
-.portfolio__grid {
-columns: 2;
-column-gap: 8px;
-padding: 0 var(--sp-3);
-}
-
-.portfolio__item {
-margin-bottom: 8px;
-}
-}
-
-/* =============================================
-MOBILE
-============================================= */
-
-@media (max-width: 480px) {
-.portfolio {
-padding: var(--sp-12) 0;
-}
-
-.portfolio__header {
-padding-bottom: var(--sp-8);
-}
-
-.portfolio__heading {
-font-size: 2rem;
-}
-
-.portfolio__sub {
-font-size: 0.85rem;
-}
-
-.portfolio__grid {
-columns: 2;
-column-gap: 6px;
-padding: 0 var(--sp-2);
-}
-
-.portfolio__item {
-margin-bottom: 6px;
-}
-
-.portfolio__lb-nav {
-font-size: 2rem;
-}
-
-.portfolio__lb-close {
-font-size: 1.25rem;
-}
-}
-
-@media (max-width: 360px) {
-.portfolio__grid {
-margin-top: 20px;
-columns: 2;
-column-gap: 4px;
-padding: 0 6px;
-}
-
-.portfolio__item {
-margin-bottom: 4px;
-}
-}
-
-/* =============================================
-CATEGORY INFO
-============================================= */
-
-.portfolio__category-info {
-max-width: 900px;
-margin: 2rem auto 3rem;
-text-align: center;
-padding: 0 1rem;
-}
-
-.portfolio__category-info h3 {
-font-size: 2rem;
-margin-bottom: 0.75rem;
-}
-
-.portfolio__category-info p {
-font-size: 1rem;
-line-height: 1.8;
-opacity: 0.8;
 }

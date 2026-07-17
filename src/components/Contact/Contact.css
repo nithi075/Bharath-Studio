@@ -1,149 +1,164 @@
-/* =============================================
-   Contact.css
-   ============================================= */
-
-/* ---- Hero image block ---- */
-.contact__hero {
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  min-height: 500px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.contact {
+  padding: var(--sp-8) 0;
+  background-color: var(--color-cream);
 }
 
-.contact__hero-img-wrap {
-  position: absolute;
-  inset: 0;
+.contact__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--sp-7);
 }
 
-.contact__hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 8s ease;
-}
-
-.contact__hero:hover .contact__hero-img {
-  transform: scale(1.03);
-}
-
-.contact__hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.25) 0%,
-    rgba(0,0,0,0.55) 100%
-  );
-}
-
-.contact__hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 0 var(--sp-8);
-  max-width: 640px;
-}
-
+/* ---- Info column ---- */
 .contact__heading {
-  font-family: var(--font-display);
-  font-size: var(--fs-4xl);
-  font-weight: 400;
-  color: var(--color-white);
-  letter-spacing: 0.04em;
+  margin-top: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.contact__heading em {
+  font-style: italic;
+  color: var(--color-wine);
+}
+
+.contact__lead {
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+  max-width: 42ch;
   margin-bottom: var(--sp-5);
 }
 
-.contact__subtext {
-  font-family: var(--font-ui);
-  font-size: var(--fs-base);
-  font-weight: 300;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.7;
-  margin-bottom: var(--sp-8);
-  letter-spacing: 0.03em;
-}
-
-/* ---- Instagram block ---- */
-.contact__instagram {
-  background: var(--color-white);
-  padding: var(--sp-12) var(--sp-8);
-  text-align: center;
-  border-top: 1px solid var(--color-border);
-}
-
-.contact__instagram-inner {
+.contact__details {
   display: flex;
   flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4) 0;
+  border-top: 1px solid var(--color-gold-light);
+  border-bottom: 1px solid var(--color-gold-light);
+  margin-bottom: var(--sp-5);
+}
+
+.contact__details li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.contact__details-label {
+  color: var(--color-gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.contact__map-placeholder {
+  aspect-ratio: 16 / 9;
+  background:
+    linear-gradient(180deg, rgba(124, 131, 101, 0.25), rgba(107, 39, 55, 0.1)),
+    repeating-linear-gradient(
+      60deg,
+      #e6dcc2 0px,
+      #e6dcc2 1px,
+      #ded1ab 1px,
+      #ded1ab 22px
+    );
+  display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* ---- Form column ---- */
+.contact__form {
+  background-color: var(--color-white);
+  padding: var(--sp-5);
+  border: 1px solid var(--color-gold-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--sp-3);
 }
 
-.contact__instagram-label {
-  font-family: var(--font-ui);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.18em;
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-light-gray);
+  color: var(--color-ink-soft);
 }
 
-.contact__instagram-handle {
-  font-family: var(--font-ui);
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-dark);
-  position: relative;
-  transition: color var(--transition-base);
+.contact__field input,
+.contact__field select,
+.contact__field textarea {
+  border: none;
+  border-bottom: 1px solid var(--color-gold-light);
+  background: transparent;
+  padding: 0.6rem 0.1rem;
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--color-ink);
+  transition: border-color var(--dur-fast) var(--ease-elegant);
 }
 
-.contact__instagram-handle::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-gold);
-  transition: width var(--transition-base);
+.contact__field textarea {
+  resize: vertical;
+  min-height: 90px;
 }
 
-.contact__instagram-handle:hover {
-  color: var(--color-gold);
+.contact__field input:focus,
+.contact__field select:focus,
+.contact__field textarea:focus {
+  border-color: var(--color-wine);
 }
 
-.contact__instagram-handle:hover::after {
-  width: 100%;
+.contact__submit {
+  align-self: flex-start;
+  margin-top: var(--sp-2);
 }
 
-/* ---- Responsive ---- */
-@media (max-width: 768px) {
-  .contact__hero {
-    height: 60vh;
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-6) 0;
+  text-align: center;
+  color: var(--color-ink-soft);
+}
+
+.contact__success-heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 2rem;
+  color: var(--color-wine);
+}
+
+/* ---- Breakpoints ---- */
+@media (max-width: 960px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
   }
-
-  .contact__heading {
-    font-size: var(--fs-3xl);
-  }
 }
 
-@media (max-width: 480px) {
-  .contact__hero {
-    height: 55vh;
-    min-height: 400px;
+@media (max-width: 560px) {
+  .contact {
+    padding: var(--sp-6) 0;
   }
-
-  .contact__heading {
-    font-size: var(--fs-2xl);
+  .contact__row {
+    grid-template-columns: 1fr;
   }
-
-  .contact__subtext {
-    font-size: var(--fs-sm);
+  .contact__form {
+    padding: var(--sp-3);
   }
 }

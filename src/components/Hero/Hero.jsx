@@ -1,139 +1,78 @@
-import { useState, useEffect } from 'react'
-import './Hero.css'
+import { useEffect, useState } from "react";
+import "./Hero.css";
 
-import hero1 from '../../assets/hero1.jpg'
-import hero2 from '../../assets/hero2.jpg'
-import hero3 from '../../assets/hero3.jpg'
-import hero4 from '../../assets/hero4.jpg'
-import hero5 from '../../assets/hero5.jpg'
-import hero6 from '../../assets/hero6.jpg'
-const slides = [
-  {
-    id: 1,
-    src: hero1,
-    alt: 'Srimathi Photography Hero Image 1',
-  },
-  {
-    id: 2,
-    src: hero2,
-    alt: 'Srimathi Photography Hero Image 2',
-  },
-  {
-    id: 3,
-    src: hero3,
-    alt: 'Srimathi Photography Hero Image 3',
-  },
-  {
-    id: 4,
-    src: hero4,
-    alt: 'Srimathi Photography Hero Image 4',
-  },
-  {
-    id: 5,
-    src: hero5,
-    alt: 'Srimathi Photography Hero Image 5',
-  },
-  {
-    id: 6,
-    src: hero6,
-    alt: 'Srimathi Photography Hero Image 6',
-  },
-]
+import hero1 from "../../assets/hero1.jpg";
+import hero2 from "../../assets/hero2.jpg";
+import hero3 from "../../assets/hero3.jpg";
+import hero4 from "../../assets/hero4.jpg";
+import hero5 from "../../assets/hero5.jpg";
+import hero6 from "../../assets/hero6.jpg";
 
-const INTERVAL = 5000
+const images = [hero1, hero2, hero3, hero4, hero5, hero6];
 
-export default function Hero() {
-  const [current, setCurrent] = useState(0)
-  const [paused, setPaused] = useState(false)
+function Hero() {
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (paused) return
+    const slider = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 5000);
 
-    const id = setInterval(() => {
-      setCurrent((c) => (c + 1) % slides.length)
-    }, INTERVAL)
-
-    return () => clearInterval(id)
-  }, [paused])
-
-  const goTo = (i) => {
-    setCurrent(i)
-    setPaused(true)
-    setTimeout(() => setPaused(false), INTERVAL * 2)
-  }
+    return () => clearInterval(slider);
+  }, []);
 
   return (
-    <section className="hero" aria-label="Hero slideshow">
-      {/* Slides */}
-      <div className="hero__slides">
-        {slides.map((slide, i) => (
-          <div
-            key={slide.id}
-            className={`hero__slide${
-              i === current ? ' hero__slide--active' : ''
-            }`}
-            aria-hidden={i !== current}
-          >
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              className="hero__slide-img"
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
-          </div>
-        ))}
-      </div>
+    <section className="hero" id="home">
 
-      {/* Overlay */}
-      <div className="hero__overlay" aria-hidden="true" />
+      {images.map((img, index) => (
+        <div
+          key={index}
+          className={`hero__slide ${
+            index === current ? "active" : ""
+          }`}
+          style={{ backgroundImage: `url(${img})` }}
+        />
+      ))}
 
-      {/* Content */}
-      <div className="hero__content">
-        <p className="hero__eyebrow">
-          Wedding • Engagement • Couple Sessions
+      <div className="hero__overlay"></div>
+
+      <div className="container hero__content">
+
+        <p className="hero__subtitle">
+          Tirunelveli • Wedding • Outdoor • Corporate
         </p>
 
-        <h1 className="hero__heading">
-          Turning Moments
+        <h1>
+          Capturing
           <br />
-          Into Forever
+          <span>Your Beautiful</span>
+          <br />
+          Stories.
         </h1>
 
-        <p className="hero__description">
-          Every smile, every glance, and every emotion deserves to be
-          remembered. We capture your love story through timeless,
-          cinematic photography that you’ll cherish for generations.
+        <p className="hero__text">
+          Bharath Studio transforms your special moments into timeless memories
+          with cinematic photography and creative storytelling.
         </p>
 
-        <a href="#contact" className="btn btn-light hero__cta">
-          Book Your Session
-        </a>
+        <div className="hero__buttons">
+          <a href="#portfolio" className="btn-primary">
+            Explore Gallery
+          </a>
+
+          <a href="#contact" className="btn-outline">
+            Book Now
+          </a>
+        </div>
+
       </div>
 
-      {/* Dots */}
-      <div
-        className="hero__dots"
-        role="tablist"
-        aria-label="Slide navigation"
-      >
-        {slides.map((slide, i) => (
-          <button
-            key={slide.id}
-            className={`hero__dot${
-              i === current ? ' hero__dot--active' : ''
-            }`}
-            onClick={() => goTo(i)}
-            role="tab"
-            aria-selected={i === current}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
+      <a href="#about" className="hero__scroll">
+        <span></span>
+      </a>
 
-      {/* Scroll Hint */}
-      <div className="hero__scroll-hint" aria-hidden="true">
-        <span className="hero__scroll-line" />
-      </div>
     </section>
-  )
+  );
 }
+
+export default Hero;

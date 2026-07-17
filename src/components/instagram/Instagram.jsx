@@ -1,69 +1,82 @@
-import { motion } from 'framer-motion';
-import './Instagram.css';
+import './Instagram.css'
 
-import gallery1 from '../../assets/gal1.jpg';
-import gallery2 from '../../assets/gal2.jpg';
-import gallery3 from '../../assets/gal3.jpg';
-import gallery4 from '../../assets/gal6.jpg';
-import gallery5 from '../../assets/gal4.jpg';
-import gallery6 from '../../assets/gal5.jpg';
+import Insta1 from '../../assets/insta1.jpg'
+import Insta2 from '../../assets/insta2.jpg'
+import Insta3 from '../../assets/insta3.jpg'
+import Insta4 from '../../assets/insta4.jpg'
+import Insta5 from '../../assets/insta5.jpg'
+import Insta6 from '../../assets/insta6.jpg'
 
-const Instagram = () => {
-  const images = [
-    gallery1,
-    gallery2,
-    gallery3,
-    gallery4,
-    gallery5,
-    gallery6,
-  ];
+const POSTS = [
+  Insta1,
+  Insta2,
+  Insta3,
+  Insta4,
+  Insta5,
+  Insta6,
+]
 
+function Instagram() {
   return (
-    <section className="insta-feed" id="instagram">
+    <section className="instagram" id="instagram">
+      <div className="container">
 
-      <h2 className="insta-feed__title">
-        VISUAL NARRATIVES
-      </h2>
+        <div className="instagram__header">
+          <p className="eyebrow">ART LIVES IN THE</p>
 
-      <a
-        href="https://www.instagram.com/visualsby_ks/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="insta-feed__handle"
-      >
-        @visualsby_ks
-      </a>
+          <h2 className="section-heading">
+            INSTAGRAM
+          </h2>
+        </div>
 
-      <div className="insta-feed__grid">
+        <div className="instagram__wrapper">
 
-        {images.map((img, i) => (
+          <div className="instagram__grid">
+            {POSTS.map((image, index) => (
+              <a
+                href="https://www.instagram.com/dp_photography_tn76/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="instagram__item"
+                key={index}
+              >
+                <img
+                  src={image}
+                  alt={`Instagram ${index + 1}`}
+                  className="instagram__image"
+                />
 
-          <motion.div
-            key={i}
-            className="insta-feed__item"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.7,
-              delay: i * 0.1,
-            }}
-            viewport={{ once: true }}
-          >
-            <div className="insta-feed__image">
-              <img
-                src={img}
-                alt={`Instagram Post ${i + 1}`}
-                loading="lazy"
-              />
-            </div>
-          </motion.div>
+                <div className="instagram__overlay">
+                  📷
+                </div>
+              </a>
+            ))}
+          </div>
 
-        ))}
+          <div className="instagram__card">
+
+            <h3>FOLLOW OUR JOURNEY</h3>
+
+            <p>
+              Get inspired and follow us on Instagram
+            </p>
+
+            <a
+              href="https://www.instagram.com/dp_photography_tn76/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagram__button"
+            >
+              📷 FOLLOW OUR JOURNEY
+            </a>
+
+          </div>
+
+        </div>
 
       </div>
-
     </section>
-  );
-};
+  )
+}
 
-export default Instagram;
+export default Instagram

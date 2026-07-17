@@ -1,95 +1,76 @@
-/* =============================================
-   Testimonials — 3 rotating sets of 3 reviews
-   ============================================= */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Testimonials.css'
 
-const testimonials = [
+const REVIEWS = [
   {
-    id: 1,
-    body: 'Visuals by KS beautifully captured every emotion of our wedding journey. From candid moments to traditional frames, every picture felt natural and timeless. The team made us comfortable throughout and gave us memories we will cherish forever.',
-    couple: 'Harini + Karthik',
+    quote:
+      "Thank you Bharath Studio for beautifully capturing our wedding. Every photograph feels natural and full of emotion. The team was patient, professional, and made us feel comfortable throughout the day. We couldn't have asked for better memories.",
+    name: "Mr. Aravind & Mrs. Keerthana",
+    venue: "Tirunelveli",
   },
   {
-    id: 2,
-    body: 'Choosing Visuals by KS for our engagement and wedding was the best decision. Their creativity, patience, and attention to detail were amazing. Every photo tells a story and the final output exceeded our expectations.',
-    couple: 'Meera + Arjun',
+    quote:
+      "The outdoor pre-wedding shoot exceeded our expectations. Every frame looked cinematic and elegant. The team's creativity, punctuality, and friendly approach made the entire experience enjoyable.",
+    name: "Mr. Karthik & Mrs. Nivetha",
+    venue: "Palayamkottai",
   },
   {
-    id: 3,
-    body: 'The entire experience with Visuals by KS was wonderful. The team captured our pre-wedding shoot and wedding moments so beautifully. They understood our style and created pictures that truly reflected us.',
-    couple: 'Divya + Rohit',
+    quote:
+      "Our daughter's Bharatanatyam Arangetram was captured perfectly. Every important moment, expression, and performance was beautifully preserved. We sincerely thank Bharath Studio for their dedication and excellent work.",
+    name: "Mrs. Meenakshi",
+    venue: "Shivaank Nrithyalaya, Palayamkottai",
   },
-  {
-    id: 4,
-    body: 'From the first discussion to final delivery, Visuals by KS handled everything professionally. The photographers were friendly, creative, and captured every little detail perfectly. We absolutely loved our wedding album.',
-    couple: 'Priya + Sanjay',
-  },
-  {
-    id: 5,
-    body: 'A huge thanks to Visuals by KS for turning our special day into beautiful memories. The candid shots, videos, and edits were elegant and emotional. Their dedication and quality of work are truly impressive.',
-    couple: 'Nandhini + Vishal',
-  },
-  {
-    id: 6,
-    body: 'Visuals by KS made us feel completely relaxed in front of the camera. Their team captured genuine smiles, emotions, and unforgettable moments. The final photos were beyond what we imagined.',
-    couple: 'Swetha + Naveen',
-  },
-  {
-    id: 7,
-    body: 'Every frame delivered by Visuals by KS had a beautiful story behind it. Their balance of candid photography and traditional moments was perfect. We are so happy that they captured our big day.',
-    couple: 'Ananya + Pranav',
-  },
-  {
-    id: 8,
-    body: 'Amazing experience working with Visuals by KS! The pre-wedding concepts, wedding coverage, and highlight videos were beautifully executed. A passionate team that truly loves creating memories.',
-    couple: 'Keerthana + Rahul',
-  },
-  {
-    id: 9,
-    body: 'The Visuals by KS team did a fantastic job capturing our celebrations. Their patience, creativity, and commitment were visible in every photo and film. Highly recommended for couples looking for elegant memories.',
-    couple: 'Aadhya + Siddharth',
-  },
-]
+];
 
-/* Group into pages of 3 */
-const pages = [
-  testimonials.slice(0, 3),
-  testimonials.slice(3, 6),
-  testimonials.slice(6, 9),
-]
+function Testimonials() {
+  const [active, setActive] = useState(0)
 
-export default function Testimonials() {
-  const [page, setPage] = useState(0)
+  // Auto-advance every 7s, paused implicitly by user interaction resetting index.
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % REVIEWS.length)
+    }, 7000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const goTo = (index) => setActive(index)
+  const goPrev = () => setActive((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length)
+  const goNext = () => setActive((prev) => (prev + 1) % REVIEWS.length)
 
   return (
-    <section className="testimonials" aria-labelledby="testimonials-heading">
-      <div className="testimonials__container">
-        <span className="section-label" id="testimonials-heading">Testimonials</span>
+    <section id="testimonials" className="testimonials">
+      <div className="container testimonials__inner">
+        <p className="eyebrow">In Their Words</p>
+        <h2 className="section-heading testimonials__heading">Kind words from <em>our</em> Clients</h2>
 
-        <div className="testimonials__grid">
-          {pages[page].map((t) => (
-            <article key={t.id} className="testimonial-card">
-              {/* Quotation mark */}
-              <span className="testimonial-card__quote" aria-hidden="true">"</span>
-              <p className="testimonial-card__body">{t.body}</p>
-              <footer className="testimonial-card__footer">
-                <p className="testimonial-card__couple">{t.couple}</p>
-              </footer>
-            </article>
-          ))}
+        <div className="testimonials__carousel">
+          <button className="testimonials__arrow testimonials__arrow--left" onClick={goPrev} aria-label="Previous testimonial">&#8592;</button>
+
+          <div className="testimonials__slide-window">
+            {REVIEWS.map((review, index) => (
+              <blockquote
+                key={review.name}
+                className={`testimonials__slide ${active === index ? 'is-active' : ''}`}
+              >
+                <p className="testimonials__quote">&ldquo;{review.quote}&rdquo;</p>
+                <footer className="testimonials__attribution">
+                  <span className="testimonials__name">{review.name}</span>
+                  <span className="testimonials__venue">{review.venue}</span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+
+          <button className="testimonials__arrow testimonials__arrow--right" onClick={goNext} aria-label="Next testimonial">&#8594;</button>
         </div>
 
-        {/* Page dots */}
-        <div className="testimonials__dots" role="tablist" aria-label="Testimonial page">
-          {pages.map((_, i) => (
+        <div className="testimonials__dots">
+          {REVIEWS.map((review, index) => (
             <button
-              key={i}
-              className={`testimonials__dot${i === page ? ' testimonials__dot--active' : ''}`}
-              onClick={() => setPage(i)}
-              role="tab"
-              aria-selected={i === page}
-              aria-label={`Testimonials page ${i + 1}`}
+              key={review.name}
+              className={`testimonials__dot ${active === index ? 'is-active' : ''}`}
+              onClick={() => goTo(index)}
+              aria-label={`Show testimonial from ${review.name}`}
             />
           ))}
         </div>
@@ -97,3 +78,5 @@ export default function Testimonials() {
     </section>
   )
 }
+
+export default Testimonials
