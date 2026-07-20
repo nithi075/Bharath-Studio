@@ -6,10 +6,19 @@ import "./GalleryPage.css";
 function GalleryCategory() {
   const { category } = useParams();
 
+  // Lightbox State
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Category Details
   const categoryInfo = {
     wedding: {
       title: "Wedding Photography",
       quote: "Every love story deserves to be remembered forever.",
+    },
+    prewedding: {
+      title: "Pre Wedding Photography",
+      quote:
+        "Beautiful moments before the big day, captured with love and creativity.",
     },
     model: {
       title: "Model Photography",
@@ -29,16 +38,18 @@ function GalleryCategory() {
     },
   };
 
-  // Category Filter Buttons
+  // Filter Buttons
   const categoryButtons = [
     "All",
     "Wedding",
+    "PreWedding",
     "Model",
     "Portrait",
     "Maternity",
     "Bride",
   ];
 
+  // Title & Quote
   const info = category
     ? categoryInfo[category.toLowerCase()]
     : {
@@ -47,8 +58,11 @@ function GalleryCategory() {
           "Explore our collection of beautiful moments captured through the lens.",
       };
 
+  // Active Filter
   const [filter, setFilter] = useState(
-    category ? category.charAt(0).toUpperCase() + category.slice(1) : "All"
+    category
+      ? category.charAt(0).toUpperCase() + category.slice(1)
+      : "All"
   );
 
   // Filter Images
@@ -71,7 +85,7 @@ function GalleryCategory() {
 
         <p className="category-quote">{info.quote}</p>
 
-        {/* Filter only in Full Gallery */}
+        {/* Filters */}
         {!category && (
           <div className="gallery-filters">
             {categoryButtons.map((btn) => (
@@ -80,19 +94,24 @@ function GalleryCategory() {
                 className={filter === btn ? "active" : ""}
                 onClick={() => setFilter(btn)}
               >
-                {btn}
+                {btn === "PreWedding" ? "Pre Wedding" : btn}
               </button>
             ))}
           </div>
         )}
 
+        {/* Gallery */}
         <div className="grid">
           {images.length > 0 ? (
             images.map((item, index) => (
-              <div className="grid-item" key={index}>
+              <div
+                className="grid-item"
+                key={index}
+                onClick={() => setSelectedImage(item.image)}
+              >
                 <img
                   src={item.image}
-                  alt={item.category}
+                  alt={item.type || item.category}
                   loading="lazy"
                 />
               </div>
@@ -101,6 +120,28 @@ function GalleryCategory() {
             <h3>No images found.</h3>
           )}
         </div>
+
+        {/* Lightbox */}
+        {selectedImage && (
+          <div
+            className="gallery-lightbox"
+            onClick={() => setSelectedImage(null)}
+          >
+            <span
+              className="gallery-close"
+              onClick={() => setSelectedImage(null)}
+            >
+              &times;
+            </span>
+
+            <img
+              src={selectedImage}
+              alt="Preview"
+              className="gallery-lightbox-image"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

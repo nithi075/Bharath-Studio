@@ -10,7 +10,7 @@ import p6 from "../../assets/p6.jpg";
 import p7 from "../../assets/p7.jpg";
 import p8 from "../../assets/p8.jpg";
 
-const FILTERS = ['All', 'Classic', 'Garden', 'Ballroom']
+const FILTERS = ["All", "Classic", "Garden", "Ballroom"];
 
 const WEDDINGS = [
   {
@@ -80,12 +80,13 @@ const WEDDINGS = [
 ];
 
 function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('All')
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const visibleWeddings =
-    activeFilter === 'All'
+    activeFilter === "All"
       ? WEDDINGS
-      : WEDDINGS.filter((w) => w.category === activeFilter)
+      : WEDDINGS.filter((w) => w.category === activeFilter);
 
   return (
     <section id="portfolio" className="portfolio">
@@ -93,44 +94,57 @@ function Portfolio() {
         <div className="portfolio__header">
           <div>
             <p className="eyebrow">Real Weddings</p>
-            <h2 className="section-heading">A few days we've <em>witnessed</em></h2>
+            <h2 className="section-heading">
+              A few days we've <em>witnessed</em>
+            </h2>
           </div>
 
-          <div className="portfolio__filters">
-            {FILTERS.map((filter) => (
-              <button
-                key={filter}
-                className={`portfolio__filter ${
-                  activeFilter === filter ? 'is-active' : ''
-                }`}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
+         
         </div>
 
         <div className="portfolio__grid">
           {visibleWeddings.map((wedding, index) => (
-            <div className={`portfolio__item portfolio__item--${wedding.size}`} key={wedding.id}>
+            <div
+              className={`portfolio__item portfolio__item--${wedding.size}`}
+              key={wedding.id}
+              onClick={() => setSelectedImage(wedding.image)}
+            >
               <img
                 src={wedding.image}
                 className="portfolio__image"
                 alt={wedding.couple}
               />
+
               <span className="portfolio__figure">
-                Fig. {String(index + 1).padStart(2, '0')}
+                Fig. {String(index + 1).padStart(2, "0")}
               </span>
+
               <div className="portfolio__overlay">
-                <span className="portfolio__zoom" aria-hidden="true">+</span>
+                <span className="portfolio__zoom">+</span>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      {selectedImage && (
+        <div
+          className="portfolio__lightbox"
+          onClick={() => setSelectedImage(null)}
+        >
+          <span className="portfolio__close">&times;</span>
+
+          <img
+            src={selectedImage}
+            alt=""
+            className="portfolio__lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
-  )
+  );
 }
 
-export default Portfolio
+export default Portfolio;

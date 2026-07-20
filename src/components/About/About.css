@@ -5,53 +5,64 @@
 
 .about__grid {
   display: grid;
-  grid-template-columns: 0.85fr 1fr;
+  grid-template-columns: 0.95fr 1fr;
   gap: var(--sp-7);
   align-items: center;
 }
 
-/* ---- Image column ---- */
-.about__image-wrap {
+/* ===========================
+   Videos Section
+=========================== */
+
+.about__videos {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.about__video-wrap {
+  flex: 1;
   position: relative;
 }
 
-.about__image-placeholder {
-  aspect-ratio: 4 / 5;
-  width: 100%;
-  background:
-    linear-gradient(200deg, rgba(124, 131, 101, 0.4), rgba(43, 38, 32, 0.2)),
-    repeating-linear-gradient(
-      45deg,
-      #e4d7ba 0px,
-      #e4d7ba 2px,
-      #ddcda9 2px,
-      #ddcda9 34px
-    );
-  display: flex;
-  align-items: flex-end;
-  padding: var(--sp-3);
-}
-
-.about__image-caption {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  background: rgba(43, 38, 32, 0.55);
-  padding: 0.4rem 0.8rem;
-}
-
-.about__image-accent {
+.about__video-wrap::before {
+  content: "";
   position: absolute;
-  top: var(--sp-3);
-  left: calc(-1 * var(--sp-3));
-  width: 100%;
-  height: 100%;
+  inset: -12px;
   border: 1px solid var(--color-gold);
   z-index: -1;
 }
 
-/* ---- Content column ---- */
+.about__video-wrap--offset {
+  margin-top: 70px;
+}
+
+.about__video {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.about__image-caption {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: rgba(43, 38, 32, 0.65);
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+}
+
+/* ===========================
+   Content
+=========================== */
+
 .about__heading {
   margin-top: var(--sp-2);
   margin-bottom: var(--sp-4);
@@ -70,6 +81,23 @@
   max-width: 46ch;
   margin-bottom: var(--sp-3);
 }
+
+/* Drop Cap */
+
+.about__paragraph--lead::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 3.6rem;
+  line-height: 0.75;
+  float: left;
+  padding-right: 0.6rem;
+  padding-top: 0.2rem;
+  color: var(--color-wine);
+}
+
+/* ===========================
+   Stats
+=========================== */
 
 .about__stats {
   display: flex;
@@ -104,45 +132,117 @@
   line-height: 1.4;
 }
 
-/* ---- Breakpoints ---- */
+/* ===========================
+   Tablet
+=========================== */
+
 @media (max-width: 960px) {
+
+  .about {
+    padding: var(--sp-7) 0;
+  }
+
   .about__grid {
     grid-template-columns: 1fr;
-    gap: var(--sp-5);
+    gap: var(--sp-6);
   }
-  .about__image-wrap {
-    max-width: 420px;
+
+  .about__videos {
+    max-width: 500px;
     margin: 0 auto;
+    flex-direction: column;
+    gap: 20px;
   }
+
+  .about__video-wrap--offset {
+    margin-top: 0;
+  }
+
+  .about__image-caption {
+    position: static;
+    margin-top: 16px;
+    width: fit-content;
+  }
+
+  .about__heading {
+    font-size: 2.2rem;
+  }
+
 }
 
+/* ===========================
+   Mobile
+=========================== */
+
 @media (max-width: 640px) {
+
   .about {
     padding: var(--sp-6) 0;
   }
+
   .about__heading {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
+
+  .about__paragraph {
+    font-size: 0.95rem;
+  }
+
   .about__stats {
     flex-direction: column;
     gap: var(--sp-3);
   }
-}
-.about__video {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
-}
 
-/* Editorial drop cap on the opening line of the lead paragraph */
-.about__paragraph--lead::first-letter {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 3.6rem;
-  line-height: 0.75;
-  float: left;
-  padding-right: 0.6rem;
-  padding-top: 0.2rem;
-  color: var(--color-wine);
+  .about__stat-value {
+    font-size: 2rem;
+  }
+
+  .about__video {
+    aspect-ratio: 4 / 5;
+    border-radius: 10px;
+  }
+
+}
+@media (max-width: 960px) {
+
+  .about {
+    padding: var(--sp-7) 0;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+  }
+
+  .about__videos {
+    display: flex;
+    flex-direction: row;   /* column -> row */
+    gap: 12px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .about__video-wrap {
+    flex: 1;
+  }
+
+  .about__video-wrap--offset {
+    margin-top: 0;
+  }
+
+  .about__video {
+    aspect-ratio: 3 / 4;
+  }
+
+  .about__image-caption {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    font-size: 0.6rem;
+    padding: 6px 10px;
+  }
+
+  .about__heading {
+    font-size: 2.2rem;
+  }
 }

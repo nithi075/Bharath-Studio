@@ -60,7 +60,7 @@ function Contact() {
 
             <li>
               <span className="contact__details-label">Phone</span>
-              <span>+91 98765 43210</span>
+              <span>+91 70100 92498</span>
             </li>
 
             <li>

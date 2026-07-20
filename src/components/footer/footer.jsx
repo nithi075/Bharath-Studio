@@ -58,28 +58,7 @@ function Footer() {
             storytelling — told one frame at a time.
           </p>
 
-          <form className="footer__newsletter" onSubmit={handleSubscribe}>
-            <span className="footer__newsletter-label">
-              Join the mailing list
-            </span>
-
-            {subscribed ? (
-              <p className="footer__subscribed">
-                Thank you — you're on the list.
-              </p>
-            ) : (
-              <div className="footer__newsletter-row">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <button type="submit">Subscribe</button>
-              </div>
-            )}
-          </form>
+  
         </div>
 
         {/* Links */}

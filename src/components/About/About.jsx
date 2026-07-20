@@ -1,5 +1,7 @@
 import "./About.css";
-import aboutVideo from "../../assets/about.mp4"; // உங்கள் video
+
+import aboutVideo1 from "../../assets/about.mp4";
+import aboutVideo2 from "../../assets/about2.mp4";
 
 const STATS = [
   { value: "194", suffix: "", label: "Creative Projects Completed" },
@@ -12,26 +14,40 @@ function About() {
     <section id="about" className="about">
       <div className="container about__grid">
 
-        <div className="about__image-wrap">
+        {/* Videos */}
+        <div className="about__videos">
 
-          <video
-            className="about__video"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={aboutVideo} type="video/mp4" />
-          </video>
+          <div className="about__video-wrap">
+            <video
+              className="about__video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src={aboutVideo1} type="video/mp4" />
+            </video>
+          </div>
+
+          <div className="about__video-wrap about__video-wrap--offset">
+            <video
+              className="about__video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src={aboutVideo2} type="video/mp4" />
+            </video>
+          </div>
 
           <span className="about__image-caption">
             Capturing Stories Through Our Lens
           </span>
 
-          <div className="about__image-accent" />
-
         </div>
 
+        {/* Content */}
         <div className="about__content">
           <p className="eyebrow">Bharath Studio • Tirunelveli</p>
 
@@ -66,6 +82,7 @@ function About() {
               </div>
             ))}
           </div>
+
         </div>
 
       </div>

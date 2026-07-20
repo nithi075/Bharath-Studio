@@ -34,7 +34,7 @@ function Instagram() {
           <div className="instagram__grid">
             {POSTS.map((image, index) => (
               <a
-                href="https://www.instagram.com/dp_photography_tn76/"
+                href="https://www.instagram.com/bharath_studio_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="instagram__item"
