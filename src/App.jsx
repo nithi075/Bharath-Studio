@@ -8,12 +8,13 @@ import About from "./components/About/About";
 import Gallery from "./components/Gallery/Gallery";
 import Services from "./components/Services/Services";
 import Portfolio from "./components/Portfolio/Portfolio";
-import Testimonials from "./components/testimonials/Testimonials";
+import Testimonials from "./components/Testimonials/Testimonials";
 import Contact from "./components/Contact/Contact";
-import Instagram from "./components/instagram/Instagram";
-import Footer from "./components/footer/footer";
+import Instagram from "./components/Instagram/Instagram";
+import Footer from "./components/Footer/footer";
 
 import GalleryCategory from "./components/GalleryPage/GalleryPage";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 
 function Home() {
   return (
@@ -55,25 +56,28 @@ function Home() {
 
 function App() {
   return (
-    <>
-      <Navbar />
+    <Routes>
+      {/* Admin page has no navbar/footer, keeps it separate & simple */}
+      <Route path="/admin" element={<AdminDashboard />} />
 
-      <Routes>
-        {/* Home */}
-        <Route path="/" element={<Home />} />
+      {/* Everything else keeps the normal site chrome */}
+      <Route
+        path="*"
+        element={
+          <>
+            <Navbar />
 
-        {/* Full Gallery */}
-        <Route path="/gallery" element={<GalleryCategory />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/gallery" element={<GalleryCategory />} />
+              <Route path="/gallery/:category" element={<GalleryCategory />} />
+            </Routes>
 
-        {/* Category Gallery */}
-        <Route
-          path="/gallery/:category"
-          element={<GalleryCategory />}
-        />
-      </Routes>
-
-      <Footer />
-    </>
+            <Footer />
+          </>
+        }
+      />
+    </Routes>
   );
 }
 

@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Gallery.css";
+import { apiGet, toImageUrl } from "../../api/api";
 
-// Import your gallery images
+// Existing gallery images - these always stay on the site as-is.
 import GalleryImg1 from "../../assets/gal1.jpg";
 import GalleryImg2 from "../../assets/gal2.jpg";
 import GalleryImg3 from "../../assets/gal3.jpg";
@@ -28,8 +29,32 @@ const GALLERY = [
 ];
 
 function Gallery() {
+  // Admin-added images (marked "show on home") get merged in after the existing ones above.
+  const [adminImages, setAdminImages] = useState([]);
   const trackRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    apiGet("/api/gallery?home=true")
+      .then((data) => {
+        const oldestFirst = [...data].sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        );
+        setAdminImages(oldestFirst);
+      })
+      .catch((err) => console.error("Failed to load admin gallery images:", err));
+  }, []);
+
+  const FEATURED_LIMIT = 10;
+
+  // Featured Works strip always shows the 10 most recent images: existing
+  // ones first, then admin-added ones in the order they were added. Once
+  // the total goes past 10, the oldest ones roll off automatically.
+  const combined = [
+    ...GALLERY,
+    ...adminImages.map((item) => ({ image: toImageUrl(item.imageUrl), id: item._id })),
+  ];
+  const allImages = combined.slice(-FEATURED_LIMIT);
 
   const scrollByAmount = (direction) => {
     if (!trackRef.current) return;
@@ -68,8 +93,8 @@ function Gallery() {
       </div>
 
       <div className="gallery__track" ref={trackRef}>
-        {GALLERY.map((item, i) => (
-          <div className="gallery__frame" key={i}>
+        {allImages.map((item, i) => (
+          <div className="gallery__frame" key={item.id || i}>
             <div className="gallery__image-wrapper">
               <img src={item.image} className="gallery__image" alt="" />
               <span className="gallery__index">

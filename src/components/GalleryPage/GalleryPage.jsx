@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GALLERY } from "../../data/gallery";
 import "./GalleryPage.css";
+import { apiGet, toImageUrl } from "../../api/api";
 
 function GalleryCategory() {
   const { category } = useParams();
 
-  // Lightbox State
+  // Admin-added images get merged in after the existing GALLERY data above.
+  const [adminImages, setAdminImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Category Details
@@ -65,8 +67,33 @@ function GalleryCategory() {
       : "All"
   );
 
+  useEffect(() => {
+    setFilter(category ? category.charAt(0).toUpperCase() + category.slice(1) : "All");
+  }, [category]);
+
+  // Fetch admin-added images. When a specific category route is open, ask the
+  // backend to filter server-side; on "/gallery" (all categories) we fetch everything once.
+  useEffect(() => {
+    const query = category ? `?category=${category.toLowerCase()}` : "";
+
+    apiGet(`/api/gallery${query}`)
+      .then((data) => setAdminImages(data.filter((item) => item.category)))
+      .catch((err) => console.error("Failed to load admin gallery images:", err));
+  }, [category]);
+
+  // Merge existing GALLERY (local imports) with admin-added images, normalized to the same shape.
+  const allImages = [
+    ...GALLERY,
+    ...adminImages.map((item) => ({
+      image: toImageUrl(item.imageUrl),
+      category: item.category,
+      type: item.type,
+      id: item._id,
+    })),
+  ];
+
   // Filter Images
-  const images = GALLERY.filter((item) => {
+  const images = allImages.filter((item) => {
     if (category) {
       return item.category.toLowerCase() === category.toLowerCase();
     }
@@ -106,7 +133,7 @@ function GalleryCategory() {
             images.map((item, index) => (
               <div
                 className="grid-item"
-                key={index}
+                key={item.id || index}
                 onClick={() => setSelectedImage(item.image)}
               >
                 <img

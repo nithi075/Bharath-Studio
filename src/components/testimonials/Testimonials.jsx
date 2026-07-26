@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './Testimonials.css'
+import { apiGet } from '../../api/api'
 
+// Existing testimonials - these always stay on the site as-is.
 const REVIEWS = [
   {
     quote:
@@ -23,19 +25,29 @@ const REVIEWS = [
 ];
 
 function Testimonials() {
+  // Admin-added testimonials get merged in on top of the existing ones above.
+  const [adminReviews, setAdminReviews] = useState([])
   const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    apiGet('/api/testimonials')
+      .then((data) => setAdminReviews(data))
+      .catch((err) => console.error('Failed to load admin testimonials:', err))
+  }, [])
+
+  const reviews = [...REVIEWS, ...adminReviews]
 
   // Auto-advance every 7s, paused implicitly by user interaction resetting index.
   useEffect(() => {
     const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % REVIEWS.length)
+      setActive((prev) => (prev + 1) % reviews.length)
     }, 7000)
     return () => clearInterval(timer)
-  }, [])
+  }, [reviews.length])
 
   const goTo = (index) => setActive(index)
-  const goPrev = () => setActive((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length)
-  const goNext = () => setActive((prev) => (prev + 1) % REVIEWS.length)
+  const goPrev = () => setActive((prev) => (prev - 1 + reviews.length) % reviews.length)
+  const goNext = () => setActive((prev) => (prev + 1) % reviews.length)
 
   return (
     <section id="testimonials" className="testimonials">
@@ -49,9 +61,9 @@ function Testimonials() {
           <div className="testimonials__slide-window">
             <span className="testimonials__mark" aria-hidden="true">&#8220;</span>
 
-            {REVIEWS.map((review, index) => (
+            {reviews.map((review, index) => (
               <blockquote
-                key={review.name}
+                key={review._id || review.name}
                 className={`testimonials__slide ${active === index ? 'is-active' : ''}`}
               >
                 <p className="testimonials__quote">{review.quote}</p>
@@ -67,9 +79,9 @@ function Testimonials() {
         </div>
 
         <div className="testimonials__dots">
-          {REVIEWS.map((review, index) => (
+          {reviews.map((review, index) => (
             <button
-              key={review.name}
+              key={review._id || review.name}
               className={`testimonials__dot ${active === index ? 'is-active' : ''}`}
               onClick={() => goTo(index)}
               aria-label={`Show testimonial from ${review.name}`}
