@@ -35,12 +35,12 @@ function Home() {
         <Services />
       </section>
 
-      <section id="portfolio">
+      {/* <section id="portfolio">
         <Portfolio />
-      </section>
+      </section> */}
 
       <section id="testimonials">
-        <Testimonials />
+        <Testimonials/>
       </section>
 
       <section id="contact">

@@ -28,7 +28,7 @@ const SERVICES = [
   },
   {
     number: '03',
-    title: 'Product Shoots',
+    title: 'AD Shoots',
     description:
       'Creative product photography designed to highlight your brand and showcase every detail with precision.',
     type: 'video',
