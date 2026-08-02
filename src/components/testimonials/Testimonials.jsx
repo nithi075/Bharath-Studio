@@ -4,24 +4,7 @@ import { apiGet } from '../../api/api'
 
 // Existing testimonials - these always stay on the site as-is.
 const REVIEWS = [
-  {
-    quote:
-      "Thank you Bharath Studio for beautifully capturing our wedding. Every photograph feels natural and full of emotion. The team was patient, professional, and made us feel comfortable throughout the day. We couldn't have asked for better memories.",
-    name: "Mr. Aravind & Mrs. Keerthana",
-    venue: "Tirunelveli",
-  },
-  {
-    quote:
-      "The outdoor pre-wedding shoot exceeded our expectations. Every frame looked cinematic and elegant. The team's creativity, punctuality, and friendly approach made the entire experience enjoyable.",
-    name: "Mr. Karthik & Mrs. Nivetha",
-    venue: "Palayamkottai",
-  },
-  {
-    quote:
-      "Our daughter's Bharatanatyam Arangetram was captured perfectly. Every important moment, expression, and performance was beautifully preserved. We sincerely thank Bharath Studio for their dedication and excellent work.",
-    name: "Mrs. Meenakshi",
-    venue: "Shivaank Nrithyalaya, Palayamkottai",
-  },
+ 
 ];
 
 function Testimonials() {
